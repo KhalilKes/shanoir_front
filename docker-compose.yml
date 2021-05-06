@@ -1,0 +1,39 @@
+version: '3'
+services:
+  keycloak:
+    container_name: "${SHANOIR_PREFIX}keycloak"
+    environment:
+      - SHANOIR_ADMIN_EMAIL
+      - SHANOIR_ADMIN_NAME
+      - SHANOIR_URL_HOST
+      - SHANOIR_URL_SCHEME
+      - SHANOIR_SMTP_HOST
+      - SHANOIR_MIGRATION
+      - SHANOIR_KEYCLOAK_USER
+      - SHANOIR_KEYCLOAK_PASSWORD
+      - SHANOIR_ALLOWED_ADMIN_IPS
+    restart: always
+    build: ./docker-compose/keycloak
+    ports:
+      - "8180:8443"
+
+  nginx:
+    container_name: shanoir-ng-nginx
+    build: ./docker-compose/nginx
+    environment:
+      - SHANOIR_PREFIX
+      - SHANOIR_URL_HOST
+      - SHANOIR_URL_SCHEME
+      - SHANOIR_X_FORWARDED
+      - SHANOIR_COLORS
+    volumes:
+      - "logs:/var/log/nginx"
+      - certificate-share-data:/opt/ssl:ro
+    ports:
+     - "443:443"
+    depends_on:
+      - "keycloak"
+
+volumes:
+  certificate-share-data:
+  logs:
