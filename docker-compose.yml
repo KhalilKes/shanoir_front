@@ -19,7 +19,7 @@ services:
     networks:
       - shanoir_ng_network
     ports:
-      - "8080:8443"
+      - "8180:8443"
 
   mariadb:
     image: 'docker.io/bitnami/mariadb:10.3-debian-10'

@@ -138,4 +138,8 @@ if [ -n "$deploy" ] ; then
 	# 5. nginx
 	step "start: nginx"
 	docker-compose up -d nginx
+
+	step "start: wordpress"
+	docker-compose up -d mariadb
+	docker-compose up -d wordpress
 fi
