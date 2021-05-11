@@ -67,7 +67,8 @@ require()
             SHANOIR_MIGRATION)      match "$name" '^(auto|init|never|import|export)$'   ;;
 	    SHANOIR_X_FORWARDED)    match "$name" '^(generate|trust)$'			;;
             SHANOIR_COLORS)         match "$name" '^[A-Za-z0-9-]+:#[0-9a-fA-F]{6}( +[A-Za-z0-9-]+:#[0-9a-fA-F]{6})*$' ;;
-
+	    SHANOIR_DB_ADDR) ;;
+            SHANOIR_KEYCLOAK_DB_PORT) ;;
             SHANOIR_ADMIN_EMAIL)    ;;
             SHANOIR_ADMIN_NAME)     ;;
             SHANOIR_SMTP_HOST)      ;;
